@@ -3,8 +3,8 @@ class LoginController {
 
     }
 
-    log() {
-        console.log('test');
+    log(string) {
+        console.log(string);
     }
 }
 

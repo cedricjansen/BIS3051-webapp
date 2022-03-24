@@ -11,6 +11,16 @@ const Login = require('./controllers/loginController.js');
 // Starte Express App
 var app = express();
 
+// Session
+var session = require('express-session');
+app.use(session({
+    name: 'session', // here is the name of the cookie. The default is connect.sid
+    secret: 'Ssdsd@#e$#Rfe@#$d#$#', // 128 character random string is recommended
+    resave: true,
+    saveUninitialized: false,
+    cookie: { maxAge: 60 * 1000, httpOnly: true }
+}));
+
 // Initialisiere eigene Objekte
 var loginController = new Login();
 
@@ -32,8 +42,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Verweise auf die Login Page beim Aufruf von /
 // TODO Handling, wenn bereits eingeloggt.
 app.use('/', function(req, res) {
-    res.render('login.html');
-    loginController.log();
+    if(req.session.isFirst || req.cookies.isFirst) {
+        res.send ("welcome to visit again");
+    } else {
+        req.session.isFirst = 1;
+        res.cookie('isFirst', 1, { maxAge: 60 * 1000, singed: true});
+        loginController.log(req.session);
+        res.render('login.html');
+    }
+    
+    
 });
 
 
