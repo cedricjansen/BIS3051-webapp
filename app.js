@@ -24,8 +24,6 @@ app.use(session({
 // Initialisiere eigene Objekte
 var loginController = new Login();
 
-
-
 // Setup der View Engine 
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
@@ -36,18 +34,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Login call vom Frontend
+app.post('/login', function(req, res) {
+    loginController.login(req, res, 'home.html')  
+})
 
+// Logout call vom Frontend
+app.use('/logout', function(req, res) {
+   loginController.logout(req, res, 'login.html')   
+});
 
 // Verweise auf die Login Page beim Aufruf von /
 // TODO Handling, wenn bereits eingeloggt.
 app.use('/', function(req, res) {
     if(req.session.isFirst || req.cookies.isFirst) {
-       res.render('home.html');
+        // wenn bereits eingeloggt
+        res.render('home.html');
     } else {
-       loginController.login(req, res, 'login.html');
-    }
-      
+        // wenn nicht eingeloggt
+        res.render('login.html');
+    }      
 });
+
 
 
 module.exports = app;

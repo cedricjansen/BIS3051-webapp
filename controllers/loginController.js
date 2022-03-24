@@ -9,8 +9,10 @@ class LoginController {
         res.render(redirect);
     }
 
-    logout(res, redirect) {
-        res.session = null;
+    logout(req, res, redirect) {
+        req.session = null;
+        res.cookie('isFirst', 1, { expires: new Date(0) , singed: true});
+        res.cookie('session', 1, { expires: new Date(0) , singed: true});
         res.render(redirect);
     }
 

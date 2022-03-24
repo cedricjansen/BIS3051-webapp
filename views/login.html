@@ -11,6 +11,7 @@
         <!-- custom-->
         <link rel="stylesheet" href="./stylesheets/style.css">
         <link rel="stylesheet" href="./stylesheets/loginstyle.css">
+
     </head>
 
     <body class="login">
@@ -27,7 +28,7 @@
                         <div class="login-card-wrapper">
                             <h1>Farbpalette</h1>
                             <div class="login-card">
-                                <form class="u-full-width">
+                                <form class="u-full-width" method="POST" action="http://localhost:3000/login">
                                     <div class="row">
                                         <div class="twelve columns">
                                          <h4>Login</h4>
@@ -47,7 +48,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="twelve columns">
-                                            <input class="button-primary" type="submit" value="Submit">
+                                            <input id="login" class="button-primary" type="submit" value="Submit">
                                             <p>Du hast keinen Account? <a>Jetzt registrieren</a></p>
                                         </div>
                                        
@@ -62,5 +63,7 @@
               </div>
         </div>
 
+    <!-- Scripts -->
+    <script src="javascripts/login.js"></script>
     </body>
 </html>
