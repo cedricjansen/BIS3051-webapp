@@ -38,20 +38,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
 // Verweise auf die Login Page beim Aufruf von /
 // TODO Handling, wenn bereits eingeloggt.
 app.use('/', function(req, res) {
     if(req.session.isFirst || req.cookies.isFirst) {
-        res.send ("welcome to visit again");
+       res.render('home.html');
     } else {
-        req.session.isFirst = 1;
-        res.cookie('isFirst', 1, { maxAge: 60 * 1000, singed: true});
-        loginController.log(req.session);
-        res.render('login.html');
+       loginController.login(req, res, 'login.html');
     }
-    
-    
+      
 });
 
 
