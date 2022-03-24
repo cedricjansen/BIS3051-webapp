@@ -7,12 +7,14 @@ var logger = require('morgan');
 
 // Eigene Module
 const Login = require('./controllers/loginController.js');
+const database = require('./database/database.js');
 
 // Starte Express App
 var app = express();
 
 // Session
 var session = require('express-session');
+const Database = require('./database/database.js');
 app.use(session({
     name: 'session', // here is the name of the cookie. The default is connect.sid
     secret: 'Ssdsd@#e$#Rfe@#$d#$#', // 128 character random string is recommended
@@ -36,12 +38,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Login call vom Frontend
 app.post('/login', function(req, res) {
-    loginController.login(req, res, 'home.html')  
+    loginController.login(req, res, 'home.html');
+    var db = new Database();
+    db.testConnection();
+    db.end();
 })
 
 // Logout call vom Frontend
 app.use('/logout', function(req, res) {
-   loginController.logout(req, res, 'login.html')   
+   loginController.logout(req, res, 'login.html');
 });
 
 // Verweise auf die Login Page beim Aufruf von /
