@@ -1,0 +1,48 @@
+.login {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+
+.login-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 300px;
+}
+
+
+.login-card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+   
+    padding: 20px 40px;
+    width: 50%;
+
+    background-color: white;
+
+    border-radius: 6px;
+
+    box-shadow: 0 19px 46px rgba(0, 0, 0, 0.2)  ; 
+	-webkit-box-shadow: 0 19px 46px rgba(0, 0, 0, 0.2)  ; 
+	-moz-box-shadow: 0 19px 46px rgba(0, 0, 0, 0.2)  ; 
+}
+
+.login-card a {
+    text-decoration: underline;
+}
+
+.login-card a:hover {
+    cursor: pointer;
+}
+
