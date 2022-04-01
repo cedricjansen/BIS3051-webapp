@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="javascripts/logout.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Cascading Style Sheets -->
+        <!-- frameworks -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="./frameworks/skeleton204/normalize.css">
+        <link rel="stylesheet" href="./frameworks/skeleton204/skeleton.css">
+        <!-- custom-->
+        <link rel="stylesheet" href="./stylesheets/style.css">
+        <link rel="stylesheet" href="./stylesheets/homestyle.css">
+        <!-- Libraries -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                
+        <script type="text/javascript" src="./javascripts/logout.js"></script>
     </head>
     <body>
-        <p>Du bist gerade auf der Home Seite.</p>
-        <form class="u-full-width" method="POST" action="http://localhost:3000/logout">
-            <input id="login" class="button-primary" type="submit" value="Logout">
-        </form>
+        <div class="home-wrapper">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#"></a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-person-circle" style="font-size: 2rem"></i>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto mb-2 ">       
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Profil</a>
+                      </li>
+                      <li class="nav-item">
+                        <a id="" class="nav-link" href="#">Rangliste</a>
+                      </li>
+                      <li class="nav-item">
+                        <a id="logout" class="nav-link" href="#">Logout</a>
+                      </li>
+                      
+                    </ul>       
+                  </div>
+                </div>
+              </nav>
+
+            
+        </div>
     </body>
 </html>

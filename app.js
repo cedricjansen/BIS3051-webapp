@@ -4,17 +4,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json()
 
 // Eigene Module
 const Login = require('./controllers/loginController.js');
-const database = require('./database/database.js');
 
 // Starte Express App
 var app = express();
 
+
 // Session
 var session = require('express-session');
-const Database = require('./database/database.js');
 app.use(session({
     name: 'session', // here is the name of the cookie. The default is connect.sid
     secret: 'Ssdsd@#e$#Rfe@#$d#$#', // 128 character random string is recommended
@@ -30,6 +31,7 @@ var loginController = new Login();
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,14 +40,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Login call vom Frontend
 app.post('/login', function(req, res) {
-    loginController.login(req, res, 'home.html');
-    var db = new Database();
-    db.testConnection();
-    db.end();
-})
+    loginController.login(req, res, 'home.html'); 
+});
 
 // Logout call vom Frontend
-app.use('/logout', function(req, res) {
+app.post('/logout', function(req, res) {
    loginController.logout(req, res, 'login.html');
 });
 

@@ -7,3 +7,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  width: 100%;
+}
+.navitem-custom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+form {
+  margin-bottom: 0px;
+}
+
+input {
+  margin-bottom: 0px;
+}
