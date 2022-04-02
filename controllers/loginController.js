@@ -2,16 +2,26 @@ const Database = require('../database/database.js');
 
 
 class LoginController {
-    constructor() {
 
-    }
+    authenticated;
 
-    login(req, res, redirect) {
-        if(this.checkCredentials(req.body)){
-            req.session.isFirst = 1;
-            res.cookie('isFirst', 1, { maxAge: 60 * 1000, singed: true});
-            return res.status(200).send({result: 'redirect', url: redirect})
-        } 
+    async login(req, res, redirect) {
+        var error = {};
+        if(req.body.username == '' || req.body.password == '') {
+            if(req.body.username == '') {
+                error.usernameempty = true;
+            }
+            if(req.body.password == '') {
+                error.passwordempty = true;
+            }
+        } else {
+            if(await this.checkCredentials(req.body, error)) {
+                req.session.isFirst = 1;
+                res.cookie('isFirst', 1, { maxAge: 60 * 1000, singed: true});
+                return res.status(200).send({result: 'redirect', url: redirect});
+            }   
+        }
+        return res.status(200).send({result: 'failed', errors: error });
     }
 
     logout(req, res, redirect) {
@@ -22,11 +32,9 @@ class LoginController {
         return res.status(200).send({result: 'redirect', url: redirect})
     }
 
-    checkCredentials(data) {
+    async checkCredentials(data, errors) {
         var db = new Database();
-        db.authenticate(data);
-        
-        return true;
+        return await db.authenticate(data, errors, this);
     }
 
     log(string) {

@@ -46,3 +46,7 @@
     cursor: pointer;
 }
 
+.error {
+    border: solid 1px #FF0000 !important;  
+}
+
